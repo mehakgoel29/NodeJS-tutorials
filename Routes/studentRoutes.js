@@ -40,7 +40,7 @@ router.get('/', async(req, res) => {
   
   
   
-router.get('//:educationData', async (req, res) => {
+router.get('/:educationData', async (req, res) => {
     //Anything after /student/ will be captured as a variable called educationLevel
     try {
       //req.params --> Object containing route parameters
@@ -58,4 +58,25 @@ router.get('//:educationData', async (req, res) => {
     }
   });
 
+router.patch('/:id',async(req,res)=>{
+  try{
+  const id=req.params.id;
+  const updatedPersonData=req.body;
+  const response=await student.findByIdAndUpdate(id,updatedPersonData,{
+    new:true,    //Return the updated document instead of the original one.
+    runValidators:true //Ensures that your schema validation rules (like required, minLength, etc.) are checked during the update.
+  });
+  if(!response){
+    res.status(404).json({error:'student not found'})
+  }
+  console.log('data updated ')
+  res.status(200).json(response);
+  }
+  catch(err){
+    console.log('Error:', err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
 module.exports=router
+

@@ -9,7 +9,7 @@ router.get('//english',(req,res)=>{
     res.send('this section is for English Books ')
   })
   
-router.get('//novel',(req,res)=>{
+router.get('/novel',(req,res)=>{
       var novel={
           'name':'abc',
           'author':'author',
