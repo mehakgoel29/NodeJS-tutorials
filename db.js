@@ -1,13 +1,15 @@
 const mongoose=require('mongoose');
-//define the url for MongoDb database server
+require('dotenv').config();
 
-const mongoURL='mongodb://127.0.0.1:27017/students';
+//define the url for MongoDb database server
+//const mongoURL='mongodb://127.0.0.1:27017/students';
+const mongoURL=process.env.MONGO_DB_URL
 
 mongoose.connect(mongoURL);
-// mongoose.connect(mongoURL,{
-//     useNewUrlParser : true,
+// mongoose.connect(mongoURL, {
+//     useNewUrlParser: true,
 //     useUnifiedTopology: true
-// })
+// });
 
 
 // Get the default connection
